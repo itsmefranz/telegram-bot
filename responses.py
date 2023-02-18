@@ -1,5 +1,5 @@
 from datetime import datetime
-import requests
+import requests, json
 
 def sample_responses(input_text):
     user_message = str(input_text).lower()
@@ -34,6 +34,27 @@ def sample_responses(input_text):
     
     if user_message in ("trivia"):
         return "There are over 500 million pet cats!"
+
+    if user_message in ("what is the weather today?", "weather"):
+        BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
+        CITY = "Philippines"
+        API_KEYS = "e0e82e3a8dd5a5ff87b661f85c86f0ba"
+        URL = BASE_URL + "q=" + CITY + "&appid=" + API_KEYS
+        response = requests.get(URL)
+        if response.status_code == 200:
+            data = response.json()
+            main = data['main']
+            temperature = main['temp']
+            humidity = main['humidity']
+            pressure = main['pressure']
+            report = data['weather']
+            print(f"{CITY:-^30}")
+            print(f"Temperature: {temperature}")
+            print(f"Humidity: {humidity}")
+            print(f"Pressure: {pressure}")
+            print(f"Weather Report: {report[0]['description']}")
+        else:
+            print("Error in the HTTP request")
 
     return "Sorry, I do not understand you"
 
