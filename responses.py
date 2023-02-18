@@ -24,10 +24,16 @@ def sample_responses(input_text):
         nums = list(map(int, input().split()))
         nums.sort()
         nums.reverse()
-        print("After sorting the said ntegers:")
+        print("After sorting the said integers:")
         print(*nums)
 
         return "There you go! Did you have fun?"
     
+    if user_message in ("can you help me with this?", "can you help me with this"):
+        return "I'm sure we can work something out together"
+    
+    if user_message in ("trivia"):
+        return "There are over 500 million pet cats!"
+
     return "Sorry, I do not understand you"
 
