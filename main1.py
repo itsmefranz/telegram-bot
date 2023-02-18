@@ -5,7 +5,7 @@ import responses as R
 print("Bot started...")
 
 def start_command(update, context):
-    update.message.reply_text('Type your message here to get started!')
+    update.message.reply_text('Type any random message here to get started!')
 
 def help_command(update, context):
     update.message.reply_text('If you need help.. you can consult Google for it!')
@@ -15,4 +15,7 @@ def handle_message(update, context):
     response = R.sample_responses(text)
 
     update.message.reply_text(response)
+
+def error(update, context):
+    print(f"Update {update} cause error {context.error}")
 
