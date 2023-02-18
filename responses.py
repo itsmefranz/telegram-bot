@@ -10,4 +10,9 @@ def sample_responses (input_text):
         return "I am Dani's bot!"
     
     if user_message in ("time", "time?"):
-        now=
+        now = datetime.now()
+        date_time= now.strftime("%d/%m/%y, %H:%M:%S")
+
+        return str(date_time)
+    
+    return "I can not understand you"
